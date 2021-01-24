@@ -4,21 +4,16 @@ import epi.test_framework.GenericTest;
 public class ReverseDigits {
   @EpiTest(testDataFile = "reverse_digits.tsv")
   public static long reverse(int x) { //don't use arrays, constant space complexity O(1) //dont use string builder
-  int inputnum=x;
-  if(x<0){
-    inputnum=-(inputnum);
-  }
-   long finalval=0;
-   while (inputnum>0){
-     finalval =finalval*10;
-     finalval=finalval+inputnum%10;
-     inputnum=inputnum/10;
-     System.out.println(inputnum);
 
+   long finalval=0;
+  // int lenghtofx= Integer.toString(x).length();
+   while (x!=0){
+  //  lenghtofx= Integer.toString(x).length();
+     finalval =finalval*10;
+     finalval=finalval+x%10;
+     x=x/10;
    }
-   if(x<0){
-    return -finalval;
-   }
+ 
    return finalval;
   }
 
