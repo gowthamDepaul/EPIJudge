@@ -84,7 +84,7 @@ public class IntAsArrayMultiply {
       }
       
       if(firstcounter==0){
-    
+    carryover=0;
 
       finalpushinteger.addAll(finalinteger);
       firstcounter+=1;
@@ -115,15 +115,20 @@ public class IntAsArrayMultiply {
       //finalpushinteger.addAll(finalinteger);
       for(int k=sizeofprefinal;k>-1;k--){
         int sum=0;
-        if(k>0){
+        // if(k>0){
          sum=carroversum+finalinteger.get(k)+finalpushinteger.get(k);
         
-      }
-      if(k==0){
-         sum=carroversum+finalinteger.get(k);
-      }
+      //}
+      // if(k==0){
+      //    sum=carroversum+finalinteger.get(k);
+      // }
         carroversum=sum/10;
         finalpushinteger.set(k,sum%10);
+        if((k==0)&& (carroversum!=0)){
+          finalpushinteger.add(k,carroversum);
+          
+
+        }
       }
       carroversum=0;
    //   int lenoffinal=finalpushinteger.size();
@@ -136,7 +141,25 @@ public class IntAsArrayMultiply {
     }
 
     }
-    return null;
+    if(symbol<0){
+      finalpushinteger.set(0,-(finalpushinteger.get(0)));
+    }
+    //check if first digits are zero
+    int lengthoffinalinteger=finalpushinteger.size();
+    for(int finalintegerchecker=0;finalintegerchecker<lengthoffinalinteger;){
+      if(finalpushinteger.get(finalintegerchecker)==0 && finalpushinteger.size()>1)
+      {
+        
+        finalpushinteger.remove(finalintegerchecker);
+        finalintegerchecker=0;
+      
+      }
+      else{
+        return finalpushinteger;
+      }
+    }
+    System.out.println(finalpushinteger);
+    return finalpushinteger;
   }
 
   public static void main(String[] args) {
